@@ -18,6 +18,10 @@ func NewMagicPacket(macAddr string) (*MagicPacket, error) {
 	// Parse MAC address
 	mac, err := net.ParseMAC(macAddr)
 	if err != nil {
+		if err.(*net.AddrError).Err == "invalid MAC address" {
+			return nil, errors.Join(ErrInvalidMACAddress, err)
+		}
+
 		return nil, err
 	}
 
