@@ -2,7 +2,6 @@ package wol
 
 import (
 	"errors"
-	"fmt"
 	"net"
 )
 
@@ -65,8 +64,6 @@ func SendPacket(macAddr, broadcastAddr string) error {
 	if err != nil {
 		return err
 	}
-
-	fmt.Println("Sending magic packet to", addr)
 
 	// Create UDP connection
 	conn, err := net.DialUDP("udp", nil, addr)
